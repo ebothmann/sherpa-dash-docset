@@ -13,7 +13,7 @@ cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
 
 sitepath = 'sherpa.docset/Contents/Resources/Documents/sherpa.hepforge.org'
 docpath = os.path.join(sitepath, 'doc')
-docpagepath = os.path.join(docpath,'SHERPA-MC-2.1.0.html')
+docpagepath = os.path.join(docpath,'SHERPA-MC-2.1.1.html')
 
 page = open(docpagepath).read()
 soup = BeautifulSoup(page)
@@ -28,7 +28,7 @@ for tag in index_cp_tag.find_all('a', {'href':any}):
         path = tag.attrs['href'].strip()
         if path.split('#')[0] == '' and path[0:7] == '#index-':
                 # print 'name: %s, path: %s' % (name, path)
-                cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (name, 'Keyword', 'sherpa.hepforge.org/doc/SHERPA-MC-2.1.0.html'+path))
+                cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (name, 'Keyword', 'sherpa.hepforge.org/doc/SHERPA-MC-2.1.1.html'+path))
 
 # Write TOC if needed
 if soup.find('a', class_='dashAnchor') is None:
